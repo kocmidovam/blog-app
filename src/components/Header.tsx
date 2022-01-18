@@ -10,7 +10,6 @@ const Header = () => {
           <div className="me-5">
             <img src={logo} alt='Logo' className="w-100" />
           </div>
-
           <NavLink to='/' className='me-5 link-secondary'>
             Recent Articles
           </NavLink>
