@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+// import 'bootstrap/dist/css/bootstrap.min.css' - default bootstrap import
+// below I import my styles where I include also default bootsrap classes
+import './custom.scss'
 
 ReactDOM.render(
   <BrowserRouter>

@@ -1,0 +1,22 @@
+// here I can rewrite bootstrap variables
+
+$theme-colors: (
+  "gray": #F8F9FA,
+);
+
+a {
+  text-decoration: none !important;
+  color: #6C757D !important; 
+}
+
+.active {
+  color: #212529 !important;
+}
+
+.create {
+  color: #007BFF !important;
+}
+
+
+@import '~bootstrap/scss/bootstrap.scss';
+

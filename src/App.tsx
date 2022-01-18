@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
 import AdminArticleList from "./pages/AdminArticleList";
 import ArticleCreate from "./pages/ArticleCreate";
 import ArticleDetail from "./pages/ArticleDetail";
@@ -8,6 +9,7 @@ import ArticleList from "./pages/ArticleList";
 function App() {
   return (
     <div className='App'>
+      <Header />
       <Routes>
         <Route path='/' element={<ArticleList />} />
         <Route path='/create' element={<ArticleCreate />} />
