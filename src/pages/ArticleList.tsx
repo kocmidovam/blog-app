@@ -1,28 +1,21 @@
-import React, {useEffect, useState} from 'react'
-import axios from 'axios'
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getArticles } from "../redux/actions";
+import ArticleListItem from "../components/ArticleListItem";
 
 const ArticleList = () => {
-  const [articles, setArticles] = useState([])
-  useEffect(()=> {
-    const getArticles = async () => {
-      try {
-        const {data} = await axios.get('https://fullstack.exercise.applifting.cz/articles', {
-          headers: {
-            'X-API-KEY': '0578e5f7-d8df-4482-b910-29ebf8c47d37'
-          }
-        })
-        setArticles(data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getArticles()
-  }, [])
-  console.log(articles)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getArticles());
+  }, []);
 
   return (
-    <div>articles</div>
-  )
-}
+    <div className='container pt-5'>
+      <h1 className='mb-5'>Recent articles</h1>
+      <ArticleListItem />
+    </div>
+  );
+};
 
-export default ArticleList
+export default ArticleList;
