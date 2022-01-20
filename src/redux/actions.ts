@@ -12,3 +12,15 @@ export const getArticles = () => {
     }
   }
 }
+
+export const getArticleDetail = (id: string | undefined) => {
+  return async (dispatch:any) => {
+    try {
+      const {data} = await mainAxios.get(`/articles/${id}`)
+      console.log('article detail data', data)
+      dispatch({type: ActionTypes.SET_ARTICLE, payload: data})
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}

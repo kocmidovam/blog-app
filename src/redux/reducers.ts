@@ -1,5 +1,5 @@
 import { ActionTypes } from "./action-types";
-const { CREATE_ARTICLE, SET_ARTICLES, REMOVE_ARTICLE, EDIT_ARTICLE } =
+const { CREATE_ARTICLE, SET_ARTICLES, REMOVE_ARTICLE, EDIT_ARTICLE, SET_ARTICLE } =
   ActionTypes;
 type StateType = {
   articles: any;
@@ -24,6 +24,12 @@ export const rootReducer: any = (
       return {
         ...state,
         articles: action.payload,
+      };
+    }
+    case SET_ARTICLE: {
+      return {
+        ...state,
+        article: action.payload,
       };
     }
     case CREATE_ARTICLE: {

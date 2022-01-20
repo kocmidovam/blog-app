@@ -5,6 +5,10 @@ $theme-colors: (
   "primary": #0d6efd,
 );
 
+$font-sizes: (
+  7: 14px
+);
+
 a {
   text-decoration: none !important;
   color: #6c757d !important;
@@ -29,6 +33,13 @@ a {
   width: 272px;
   height: 244px;
   flex-shrink: 0;
+}
+
+.related-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 }
 
 @import "~bootstrap/scss/bootstrap.scss";
