@@ -42,4 +42,10 @@ a {
   overflow: hidden;
 }
 
+.avatar {
+  width: 44px;
+  flex-shrink: 0;
+  margin-right: 28px;
+}
+
 @import "~bootstrap/scss/bootstrap.scss";

@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getArticleDetail, getArticles } from "../redux/actions";
 import articleImage from "../assets/images/articleImage.jpg";
+import Comments from "../components/Comments";
 
 const ArticleDetail = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
   const { id } = useParams();
   //@ts-ignore
-  const { title, createdAt, content } = state.article;
+  const { title, createdAt, content, comments } = state.article;
   //@ts-ignore
   const related = state.articles;
 
@@ -19,12 +20,12 @@ const ArticleDetail = () => {
   }, [id]);
 
   //@ts-ignore
-  console.log("article detail", state.article);
+  console.log("article detail", state.articles);
 
   return (
     <div className='container pt-5'>
-      <div className='row'>
-        <div className='col-md-8'>
+      <div className='row '>
+        <div className='col-md-8 border-bottom'>
           <h1>{title}</h1>
           <p className='text-muted'>
             {new Date(createdAt).toLocaleDateString("cs-CZ")}
@@ -35,6 +36,8 @@ const ArticleDetail = () => {
           <div>
             <p>{content}</p>
           </div>
+          <Comments comments={comments}/>
+
         </div>
         <div className='col-md-4 '>
           <div className="border-start ps-2 pb-5">
@@ -48,6 +51,7 @@ const ArticleDetail = () => {
           </div>
         </div>
       </div>
+      
     </div>
   );
 };
