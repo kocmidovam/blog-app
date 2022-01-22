@@ -20,13 +20,8 @@ const ArticleCreate = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const sendForm = (values: CreateArticleType, errors: any) => {
-    console.log(errors);
-
-    if (Object.keys(errors).length === 0) {
-      dispatch(createArticle(values));
-      console.log(values);
-    }
+  const sendForm = (values: CreateArticleType) => {
+    dispatch(createArticle(values));
 
     setTimeout(() => {
       navigate(`/`);
@@ -55,26 +50,25 @@ const ArticleCreate = () => {
   return (
     <Formik
       initialValues={{
-        title: "Do Cats Drink Water? Cat Hydration & Dehydration Prevention",
-        perex:
-          "If you aren’t sure how much wet food you should feed your cat, Purina’s expert nutritionists can help. Plus, they offer guidance on food safety and provide serving ideas your cat will love.",
-        content:
-          "If you aren’t sure how much wet food you should feed your cat, Purina’s expert nutritionists can help. Plus, they offer guidance on food safety and provide serving ideas your cat will love.",
+        title: "",
+        perex: "",
+        content: "",
         image: "",
       }}
       validationSchema={createArticleSchema}
       onSubmit={(values, { resetForm }) => {
         console.log("data for send", values);
+        sendForm(values);
         resetForm();
       }}>
-      {({ values, errors, touched }) => (
+      {({ values, errors, touched, handleSubmit }) => (
         <div className='container'>
           <div className='d-flex mt-5 mb-5'>
             <h3 className='me-4'>Create new article</h3>
             <button
               className='btn btn-primary'
               type='submit'
-              onClick={() => sendForm(values, errors)}>
+              onClick={() => handleSubmit()}>
               Publish Article
             </button>
           </div>
@@ -135,7 +129,7 @@ const ArticleCreate = () => {
                 className='form-control'
                 id='content'
                 name='content'
-                placeholder='Supports markdown. Yay!'
+                placeholder="Doesn't support markdown yet"
               />
               {errors.content && touched.content ? (
                 <div className='text-danger mt-2'>{errors.content}</div>
