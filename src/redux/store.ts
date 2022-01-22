@@ -5,3 +5,6 @@ import { rootReducer } from "./reducers";
 const middleware = [thunk]
 
 export const store = createStore(rootReducer, applyMiddleware(...middleware));
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch

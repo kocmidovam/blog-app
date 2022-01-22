@@ -1,21 +1,26 @@
+import { ArticleListItemType, ArticleType } from "../types/types";
 import { ActionTypes } from "./action-types";
-const { CREATE_ARTICLE, SET_ARTICLES, REMOVE_ARTICLE, EDIT_ARTICLE, SET_ARTICLE } =
-  ActionTypes;
+const {
+  CREATE_ARTICLE,
+  SET_ARTICLES,
+  REMOVE_ARTICLE,
+  EDIT_ARTICLE,
+  SET_ARTICLE,
+} = ActionTypes;
+
 type StateType = {
-  articles: any;
-  article: any;
-  loading: boolean;
+  articles: ArticleListItemType[];
+  article: ArticleType ;
 };
 
 const initialState = {
-  loading: true,
   articles: [],
-  article: {},
+  article: {} as ArticleType,
 };
 
-type ActionType = { type: string; payload: any };
+type ActionType = { type: string; payload: any};
 
-export const rootReducer: any = (
+export const rootReducer = (
   state: StateType = initialState,
   action: ActionType
 ) => {
@@ -38,7 +43,10 @@ export const rootReducer: any = (
       };
     }
     case REMOVE_ARTICLE: {
-      return {};
+      const deletedArticles = state.articles.filter(
+        (item: ArticleListItemType) => item.articleId !== action.payload
+      );
+      return { ...state, articles: deletedArticles };
     }
     default:
       return state;

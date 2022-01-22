@@ -3,6 +3,7 @@
 $theme-colors: (
   "gray": #f8f9fa,
   "primary": #0d6efd,
+  "danger": #dc3545,
 );
 
 $font-sizes: (
@@ -46,6 +47,17 @@ a {
   width: 44px;
   flex-shrink: 0;
   margin-right: 28px;
+}
+
+.required {
+  &:after {
+    content: '*';
+    position: relative;
+    font-size: inherit;
+    color: #ee2d41;
+    padding-left: 0.25rem;
+    font-weight: bold;
+  }
 }
 
 @import "~bootstrap/scss/bootstrap.scss";

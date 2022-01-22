@@ -1,17 +1,18 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getArticleDetail, getArticles } from "../redux/actions";
 import articleImage from "../assets/images/articleImage.jpg";
 import Comments from "../components/Comments";
+import { useAppSelector } from "../hooks/useAppDispatch";
+import { ArticleListItemType } from "../types/types";
 
 const ArticleDetail = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
+  const state = useAppSelector((state) => state);
   const { id } = useParams();
-  //@ts-ignore
+  
   const { title, createdAt, content, comments } = state.article;
-  //@ts-ignore
   const related = state.articles;
 
   useEffect(() => {
@@ -19,8 +20,7 @@ const ArticleDetail = () => {
     dispatch(getArticleDetail(id));
   }, [id]);
 
-  //@ts-ignore
-  console.log("article detail", state.articles);
+  console.log("article detail", state.article);
 
   return (
     <div className='container pt-5'>
@@ -42,7 +42,7 @@ const ArticleDetail = () => {
         <div className='col-md-4 '>
           <div className="border-start ps-2 pb-5">
             <h4 className="mb-4">Related Articles</h4>
-              {related.map((item: any) => (
+              {related.slice(0, 3).map((item: ArticleListItemType) => (
                 <div key={item.articleId}>
                   <h6>{item.title}</h6>
                   <p className="fs-7 related-text">{item.perex}</p>

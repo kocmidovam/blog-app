@@ -1,20 +1,18 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import articleImage from "../assets/images/articleImage.jpg";
+import { useAppSelector } from "../hooks/useAppDispatch";
+import { ArticleListItemType } from "../types/types";
 
 const ArticleListItem = () => {
-  const state = useSelector((state) => state);
+  const state = useAppSelector((state) => state);
   console.log("articles state", state);
-  //@ts-ignore
   console.log("articles state items", state.articles);
 
   return (
     <div>
-      {/* @ts-ignore */}
       {state.articles &&
-        //@ts-ignore
-        state.articles.map((article: any) => {
+        state.articles.map((article: ArticleListItemType) => {
           const { title, articleId, perex, comments, createdAt } = article;
           return (
             <div key={articleId} className='mb-4 article-wrapper'>

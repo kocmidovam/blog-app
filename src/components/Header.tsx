@@ -6,9 +6,9 @@ const Header = () => {
   return (
     <nav className=' bg-gray p-2'>
       <div className='container d-flex justify-content-between align-items-center'>
-        <div className="d-flex align-items-center">
-          <div className="me-5">
-            <img src={logo} alt='Logo' className="w-100" />
+        <div className='d-flex align-items-center'>
+          <div className='me-5'>
+            <img src={logo} alt='Logo' className='w-100' />
           </div>
           <NavLink to='/' className='me-5 link-secondary'>
             Recent Articles
@@ -16,7 +16,10 @@ const Header = () => {
           <NavLink to='/about'>About</NavLink>
         </div>
         <div>
-          <NavLink to='/create' className='blue-link'>Create Article</NavLink>
+          <NavLink to='/admin/article-list' className='me-4 link-secondary'>My Articles</NavLink>
+          <NavLink to='/create' className='blue-link'>
+            Create Article
+          </NavLink>
         </div>
       </div>
     </nav>
