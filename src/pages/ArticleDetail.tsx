@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getArticleDetail, getArticles } from "../redux/actions";
 import articleImage from "../assets/images/articleImage.jpg";
 import Comments from "../components/Comments";
@@ -44,10 +44,10 @@ const ArticleDetail = () => {
           <div className="border-start ps-2 pb-5">
             <h4 className="mb-4">Related Articles</h4>
               {related.slice(0, 3).map((item: ArticleListItemType) => (
-                <div key={item.articleId}>
-                  <h6>{item.title}</h6>
+                <Link to={`/detail/${item.articleId}`} key={item.articleId}>
+                  <h6 className="text-black">{item.title}</h6>
                   <p className="fs-7 related-text">{item.perex}</p>
-                </div>
+                </Link>
               ))}
           </div>
         </div>
