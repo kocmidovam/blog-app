@@ -1,11 +1,11 @@
-import React, { ChangeEvent, useRef } from "react";
+import React, { ChangeEvent, useRef, useState } from "react";
 import { Form, Formik, Field } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createArticle } from "../redux/actions";
-import { mainAxios } from "../apis/apiData";
 import { CreateArticleType } from "../types/types";
+// import { mainAxios } from "../apis/apiData";
 
 const createArticleSchema = Yup.object().shape({
   title: Yup.string().required("Article title is required"),
@@ -15,6 +15,8 @@ const createArticleSchema = Yup.object().shape({
 
 const MAX_SIZE = 2097152;
 
+// TODO: add markdown support
+// TODO: make sending image work + style the input
 const ArticleCreate = () => {
   const inputEl = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
@@ -57,7 +59,6 @@ const ArticleCreate = () => {
       }}
       validationSchema={createArticleSchema}
       onSubmit={(values, { resetForm }) => {
-        console.log("data for send", values);
         sendForm(values);
         resetForm();
       }}>
@@ -123,6 +124,7 @@ const ArticleCreate = () => {
               <label htmlFor='content' className='mb-3 required'>
                 Content
               </label>
+
               <Field
                 component='textarea'
                 rows='8'
@@ -131,6 +133,7 @@ const ArticleCreate = () => {
                 name='content'
                 placeholder="Doesn't support markdown yet"
               />
+
               {errors.content && touched.content ? (
                 <div className='text-danger mt-2'>{errors.content}</div>
               ) : null}

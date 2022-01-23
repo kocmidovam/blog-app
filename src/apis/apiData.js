@@ -1,10 +1,10 @@
 import axios from 'axios'
 
 export const mainAxios = axios.create({
-  baseURL:  'https://fullstack.exercise.applifting.cz',
+  baseURL:  process.env.REACT_APP_API_URL,
   headers: {
-    'X-API-KEY': '0578e5f7-d8df-4482-b910-29ebf8c47d37',
-    Authorization: '814971b2-31b3-4ce2-9bdf-9273b9ee8b41',
+    'X-API-KEY': process.env.REACT_APP_API_KEY,
+    Authorization: process.env.REACT_APP_LOGIN,
     'Content-Type': 'application/json'
   }
 })

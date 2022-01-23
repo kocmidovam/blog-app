@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 import { mainAxios } from "../apis/apiData";
-import { CreateArticleType } from "../types/types";
+import { CreateArticleType, CreateCommentType } from "../types/types";
 import { ActionTypes } from "./action-types";
 
 
@@ -34,6 +34,18 @@ export const createArticle = (values: CreateArticleType) => {
       const { data } = await mainAxios.post(`/articles`, values);
       console.log("new article data", data);
       dispatch({ type: ActionTypes.CREATE_ARTICLE, payload: data });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+export const createComment = (values: CreateCommentType) => {
+  return async (dispatch: Dispatch) => {
+    try {
+      const { data } = await mainAxios.post(`/comments`, values);
+      console.log("new comment data", data);
+      dispatch({ type: ActionTypes.CREATE_COMMENT, payload: data });
     } catch (error) {
       console.error(error);
     }

@@ -12,7 +12,7 @@ const ArticleDetail = () => {
   const state = useAppSelector((state) => state);
   const { id } = useParams();
   
-  const { title, createdAt, content, comments } = state.article;
+  const { title, createdAt, content } = state.article;
   const related = state.articles;
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const ArticleDetail = () => {
   return (
     <div className='container pt-5'>
       <div className='row '>
-        <div className='col-md-8 border-bottom'>
+        <div className='col-md-7'>
           <h1>{title}</h1>
           <p className='text-muted'>
             {new Date(createdAt).toLocaleDateString("cs-CZ")}
@@ -33,10 +33,11 @@ const ArticleDetail = () => {
           <div className='mb-4'>
             <img src={articleImage} alt={title} className='w-100' />
           </div>
-          <div>
+          <div className="mb-5">
+            {/* TODO: show as markdown */}
             <p>{content}</p>
           </div>
-          <Comments comments={comments}/>
+          <Comments />
 
         </div>
         <div className='col-md-4 '>

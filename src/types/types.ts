@@ -6,6 +6,12 @@ export interface CommentType {
   score: number;
 }
 
+export interface CreateCommentType {
+  articleId: string | undefined
+  content: string
+  author: string
+}
+
 export interface ArticleType {
   articleId: string;
   createdAt: string;

@@ -1,4 +1,4 @@
-import { ArticleListItemType, ArticleType } from "../types/types";
+import { ArticleListItemType, ArticleType, CommentType } from "../types/types";
 import { ActionTypes } from "./action-types";
 const {
   CREATE_ARTICLE,
@@ -6,16 +6,19 @@ const {
   REMOVE_ARTICLE,
   EDIT_ARTICLE,
   SET_ARTICLE,
+  CREATE_COMMENT
 } = ActionTypes;
 
 type StateType = {
   articles: ArticleListItemType[];
   article: ArticleType ;
+  comments: CommentType[]
 };
 
 const initialState = {
   articles: [],
   article: {} as ArticleType,
+  comments: []
 };
 
 type ActionType = { type: string; payload: any};
@@ -35,11 +38,18 @@ export const rootReducer = (
       return {
         ...state,
         article: action.payload,
+        comments: action.payload.comments
       };
     }
     case CREATE_ARTICLE: {
       return {
         ...state,
+      };
+    }
+    case CREATE_COMMENT: {
+      return {
+        ...state,
+       comments: [...state.comments, action.payload]
       };
     }
     case REMOVE_ARTICLE: {

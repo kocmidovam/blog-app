@@ -4,9 +4,9 @@ import articleImage from "../assets/images/articleImage.jpg";
 import { useAppSelector } from "../hooks/useAppDispatch";
 import { ArticleListItemType } from "../types/types";
 
+// TODO: find out why I'm not getting comments in article list
 const ArticleListItem = () => {
   const state = useAppSelector((state) => state);
-  console.log("articles state", state);
   console.log("articles state items", state.articles);
 
   return (
